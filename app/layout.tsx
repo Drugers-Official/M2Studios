@@ -1,14 +1,10 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { FloatingButtons } from "@/components/floating-buttons"
 import { AuthProvider } from "@/lib/auth-context"
 import "./globals.css"
-
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
@@ -40,7 +36,6 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
-  // Open Graph
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -58,7 +53,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
     title: "M2 Studio - Professional Video Editing & Creative Studio",
@@ -66,7 +60,6 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
     creator: "@m2studio",
   },
-  // Robots
   robots: {
     index: true,
     follow: true,
@@ -90,11 +83,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" className="dark scroll-smooth" style={{ scrollPaddingTop: "64px" }}>
+    <html
+      lang="en"
+      className="dark scroll-smooth"
+      style={{ scrollPaddingTop: "64px" }}
+    >
       <head>
         {/* Structured Data for SEO */}
         <script
@@ -107,7 +104,10 @@ export default function RootLayout({
               description: "Professional video editing and creative studio",
               url: "https://m2studio.in",
               logo: "https://m2studio.in/logo.png",
-              sameAs: ["https://instagram.com/m2studio", "https://youtube.com/@m2studio"],
+              sameAs: [
+                "https://instagram.com/m2studio",
+                "https://youtube.com/@m2studio",
+              ],
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+91-XXXXXXXXXX",
@@ -117,24 +117,28 @@ export default function RootLayout({
                 {
                   "@type": "Service",
                   name: "Video Editing",
-                  description: "Professional video editing for YouTube, weddings, and more",
+                  description:
+                    "Professional video editing for YouTube, weddings, and more",
                 },
                 {
                   "@type": "Service",
                   name: "Thumbnail Design",
-                  description: "Eye-catching thumbnails for YouTube videos",
+                  description:
+                    "Eye-catching thumbnails for YouTube videos",
                 },
                 {
                   "@type": "Service",
                   name: "Logo Design",
-                  description: "Professional logo design for brands",
+                  description:
+                    "Professional logo design for brands",
                 },
               ],
             }),
           }}
         />
       </head>
-      <body className="font-sans antialiased">
+
+      <body className="font-sans antialiased bg-black text-white">
         <AuthProvider>
           <ScrollToTop />
           <FloatingButtons />
